@@ -1,0 +1,66 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100%;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-left: 1px solid #ddd;
+    box-shadow: -2px 0 6px rgba(0, 0, 0, 0.08);
+    overflow-y: auto;
+    z-index: 10;
+    font-family: sans-serif;
+  }
+  
+  .sidebar h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar label {
+    display: block;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .sidebar select,
+  .sidebar input[type="number"],
+  .sidebar input[type="color"] {
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .rules-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .rule-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  
+  .rule-row button {
+    background: transparent;
+    border: none;
+    color: red;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  
+  .add-rule-btn {
+    margin-top: 1rem;
+    padding: 6px 10px;
+    background-color: #4c6ef5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }  

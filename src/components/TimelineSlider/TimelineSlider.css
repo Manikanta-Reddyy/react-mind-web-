@@ -1,0 +1,44 @@
+.timeline-slider {
+  /* Already wrapped by .component-box */
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.slider-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.time-labels {
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.timeline-box {
+  background-color: #fffdf8; /* soft warm background */
+}
+
+.timeline-box:hover {
+  background-color: #fef9ee;
+  transform: translateY(-2px);
+}
+
+.section-label {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background-color: #4c6ef5;
+  color: white;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
