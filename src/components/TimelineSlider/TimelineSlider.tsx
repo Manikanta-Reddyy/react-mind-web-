@@ -41,25 +41,35 @@ const TimelineSlider = () => {
         />
       </div>
 
-      <Slider
-        range={mode === "range"}
-        min={0}
-        max={TOTAL_HOURS}
-        value={mode === "range" ? (selected as [number, number]) : (selected as number)}
-        onChange={onChange}
-        step={1}
-        marks={marks}
-        tooltip={{ formatter: (val) => hourFromIndex(Number(val)) }}
-        trackStyle={{ backgroundColor: "#f6a700", height: 6 }}
-        handleStyle={
-          mode === "range"
-            ? [
-                { backgroundColor: "#f6a700", borderColor: "#f6a700" },
-                { backgroundColor: "#f6a700", borderColor: "#f6a700" },
-              ]
-            : { backgroundColor: "#f6a700", borderColor: "#f6a700" }
-        }
-      />
+      {mode === "range" ? (
+        <Slider
+          range
+          min={0}
+          max={TOTAL_HOURS}
+          value={selected as [number, number]}
+          onChange={onChange}
+          step={1}
+          marks={marks}
+          tooltip={{ formatter: (val) => hourFromIndex(Number(val)) }}
+          trackStyle={{ backgroundColor: "#f6a700", height: 6 }}
+          handleStyle={[
+            { backgroundColor: "#f6a700", borderColor: "#f6a700" },
+            { backgroundColor: "#f6a700", borderColor: "#f6a700" },
+          ]}
+        />
+      ) : (
+        <Slider
+          min={0}
+          max={TOTAL_HOURS}
+          value={selected as number}
+          onChange={onChange}
+          step={1}
+          marks={marks}
+          tooltip={{ formatter: (val) => hourFromIndex(Number(val)) }}
+          trackStyle={{ backgroundColor: "#f6a700", height: 6 }}
+          handleStyle={{ backgroundColor: "#f6a700", borderColor: "#f6a700" }}
+        />
+      )}
 
       <div className="time-labels">
         {mode === "single" ? (
