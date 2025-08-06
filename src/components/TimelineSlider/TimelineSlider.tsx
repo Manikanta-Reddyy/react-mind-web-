@@ -45,7 +45,7 @@ const TimelineSlider = () => {
         range={mode === "range"}
         min={0}
         max={TOTAL_HOURS}
-        value={selected}
+        value={mode === "range" ? (selected as [number, number]) : (selected as number)}
         onChange={onChange}
         step={1}
         marks={marks}
