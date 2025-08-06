@@ -41,20 +41,18 @@ const TimelineSlider = () => {
       {/* Range Slider */}
       {mode === "range" ? (
         <Slider
-          range
-          min={0}
-          max={TOTAL_HOURS}
-          value={selected as [number, number]}
-          onChange={(val) => setSelected(val as [number, number])}
-          step={1}
-          marks={marks}
-          tooltip={{ formatter: (val) => hourFromIndex(Number(val)) }}
-          trackStyle={{ backgroundColor: "#f6a700", height: 6 }}
-          handleStyle={[
-            { backgroundColor: "#f6a700", borderColor: "#f6a700" },
-            { backgroundColor: "#f6a700", borderColor: "#f6a700" },
-          ]}
-        />
+  range={isRangeMode}
+  min={0}
+  max={720}
+  value={isRangeMode ? (value as [number, number]) : (value as number)}
+  onChange={onChange}
+  step={1}
+  marks={marks}
+  tooltip={{ formatter: tooltipFormatter }}
+  trackStyle={trackStyle}
+  handleStyle={handleStyle}
+/>
+      
       ) : (
         // Single Slider
         <Slider
