@@ -20,12 +20,9 @@ const TimelineSlider = () => {
   const { mode, selected, setMode, setSelected } = useTimeStore();
 
   const baseDate = new Date();
+
   const hourFromIndex = (index: number) =>
     format(addHours(subHours(baseDate, CENTER_INDEX), index), "dd MMM yyyy HH:mm");
-
-  const onChange = (value: number | [number, number]) => {
-    setSelected(value);
-  };
 
   return (
     <div className="component-box timeline-slider timeline-box" style={{ position: "relative" }}>
@@ -41,13 +38,14 @@ const TimelineSlider = () => {
         />
       </div>
 
+      {/* Range Slider */}
       {mode === "range" ? (
         <Slider
           range
           min={0}
           max={TOTAL_HOURS}
           value={selected as [number, number]}
-          onChange={onChange}
+          onChange={(val) => setSelected(val as [number, number])}
           step={1}
           marks={marks}
           tooltip={{ formatter: (val) => hourFromIndex(Number(val)) }}
@@ -58,11 +56,12 @@ const TimelineSlider = () => {
           ]}
         />
       ) : (
+        // Single Slider
         <Slider
           min={0}
           max={TOTAL_HOURS}
           value={selected as number}
-          onChange={onChange}
+          onChange={(val) => setSelected(val as number)}
           step={1}
           marks={marks}
           tooltip={{ formatter: (val) => hourFromIndex(Number(val)) }}
@@ -73,7 +72,7 @@ const TimelineSlider = () => {
 
       <div className="time-labels">
         {mode === "single" ? (
-          <p>Selected: {hourFromIndex(Number(selected))}</p>
+          <p>Selected: {hourFromIndex(selected as number)}</p>
         ) : (
           <p>
             Selected: {hourFromIndex((selected as [number, number])[0])} →{" "}
@@ -86,3 +85,4 @@ const TimelineSlider = () => {
 };
 
 export default TimelineSlider;
+            
