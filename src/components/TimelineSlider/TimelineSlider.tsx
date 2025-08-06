@@ -1,5 +1,3 @@
-// src/components/TimelineSlider/TimelineSlider.tsx
-
 import { Slider, Switch } from "antd";
 import { useTimeStore } from "../../context/useStore";
 import { format, addHours, subHours } from "date-fns";
@@ -24,6 +22,8 @@ const TimelineSlider = () => {
   const hourFromIndex = (index: number) =>
     format(addHours(subHours(baseDate, CENTER_INDEX), index), "dd MMM yyyy HH:mm");
 
+  const isRange = mode === "range";
+
   return (
     <div className="component-box timeline-slider timeline-box" style={{ position: "relative" }}>
       <span className="section-label">Timeline</span>
@@ -33,32 +33,32 @@ const TimelineSlider = () => {
         <Switch
           checkedChildren="Range"
           unCheckedChildren="Single"
-          checked={mode === "range"}
+          checked={isRange}
           onChange={(checked) => setMode(checked ? "range" : "single")}
         />
       </div>
 
-      {/* Range Slider */}
-      {mode === "range" ? (
+      {isRange ? (
         <Slider
-  range={isRangeMode}
-  min={0}
-  max={720}
-  value={isRangeMode ? (value as [number, number]) : (value as number)}
-  onChange={onChange}
-  step={1}
-  marks={marks}
-  tooltip={{ formatter: tooltipFormatter }}
-  trackStyle={trackStyle}
-  handleStyle={handleStyle}
-/>
-      
+          range
+          min={0}
+          max={TOTAL_HOURS}
+          value={selected as [number, number]} // ✅ safely cast for range
+          onChange={(val) => setSelected(val as [number, number])}
+          step={1}
+          marks={marks}
+          tooltip={{ formatter: (val) => hourFromIndex(Number(val)) }}
+          trackStyle={[{ backgroundColor: "#f6a700", height: 6 }]}
+          handleStyle={[
+            { backgroundColor: "#f6a700", borderColor: "#f6a700" },
+            { backgroundColor: "#f6a700", borderColor: "#f6a700" },
+          ]}
+        />
       ) : (
-        // Single Slider
         <Slider
           min={0}
           max={TOTAL_HOURS}
-          value={selected as number}
+          value={selected as number} // ✅ safely cast for single
           onChange={(val) => setSelected(val as number)}
           step={1}
           marks={marks}
@@ -69,13 +69,13 @@ const TimelineSlider = () => {
       )}
 
       <div className="time-labels">
-        {mode === "single" ? (
-          <p>Selected: {hourFromIndex(selected as number)}</p>
-        ) : (
+        {isRange ? (
           <p>
             Selected: {hourFromIndex((selected as [number, number])[0])} →{" "}
             {hourFromIndex((selected as [number, number])[1])}
           </p>
+        ) : (
+          <p>Selected: {hourFromIndex(selected as number)}</p>
         )}
       </div>
     </div>
@@ -83,4 +83,3 @@ const TimelineSlider = () => {
 };
 
 export default TimelineSlider;
-            
