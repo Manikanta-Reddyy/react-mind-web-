@@ -1,6 +1,3 @@
-// src/utils/applyPolygonColor.ts
-import mapboxgl from "mapbox-gl";
-
 export const applyPolygonColor = (
   map: mapboxgl.Map,
   polygonId: string,
